@@ -177,8 +177,8 @@ Sky.SkyShader = {
     vec4 galaxy = texture2D(
       galaxyTexture,
       vec2(
-        (vWorldPosition.x) * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
-        vWorldPosition.y * 0.00007 + (galaxyNoiseTex.g - 0.5) * 0.3
+        (vPos.x) * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
+        vPos.y * 0.00007 + (galaxyNoiseTex.g - 0.5) * 0.3
       )
     );
     vec4 finalGalaxyColor =  (galaxyColor * (-galaxy.r + galaxy.g) + galaxyColor1 * galaxy.r) * smoothstep(0., 0.2, 1. - galaxy.g);
@@ -192,8 +192,8 @@ Sky.SkyShader = {
     galaxy = texture2D(
       galaxyTexture,
       vec2(
-        (vWorldPosition.x) * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
-        vWorldPosition.y * 0.00007 + (galaxyNoiseTex.g - 0.5) * 0.3
+        (vPos.x) * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
+        vPos.y * 0.00007 + (galaxyNoiseTex.g - 0.5) * 0.3
       )
     );
     finalGalaxyColor += (galaxyColor * (-galaxy.r + galaxy.g) + galaxyColor1 * galaxy.r) * smoothstep(0., 0.3, 1. - galaxy.g);
@@ -202,7 +202,7 @@ Sky.SkyShader = {
     //################################################## Star color ################################################## 
     vec4 starTex = texture2D(
       starTexture, 
-      vWorldPosition.xz * 0.0002
+      vPos.xz * 0.0002
     );
     vec4 starNoiseTex = texture2D(
       noiseTexture,

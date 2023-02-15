@@ -1,7 +1,3 @@
-
-
-
-
 import * as THREE from 'three';
 
 import { Sky } from './sky.js';
@@ -42,7 +38,10 @@ export default () => {
   const sunPosition = new THREE.Vector3();
 
   useFrame(() => {
-    azimuth = (Date.now() / 20000) % 1;
+    app.position.x = (localPlayer.position.x);
+    app.position.z = (localPlayer.position.z);
+
+    azimuth = (Date.now() / 50000) % 1;
     const theta = Math.PI * (inclination - 0.5);
     const phi = 2 * Math.PI * (azimuth - 0.5);
 
