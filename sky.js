@@ -78,7 +78,6 @@ Sky.SkyShader = {
 
   varying vec3 vColor;
   varying vec2 vUv;
-  varying vec3 vWorldPosition;
   varying vec3 vPos;
 
   vec3 blendAdd(vec3 base, vec3 blend) {
@@ -94,7 +93,6 @@ Sky.SkyShader = {
     gl_Position = projectionMatrix * viewMatrix * modelPosition;
 
     vec3 normalizedPosition = normalize(position);
-    vWorldPosition = modelPosition.xyz;
     vUv = uv;
     vPos = position;
 
@@ -141,7 +139,6 @@ Sky.SkyShader = {
 	fragmentShader: `\
   ${THREE.ShaderChunk.logdepthbuf_pars_fragment}
   varying vec3 vColor;
-  varying vec3 vWorldPosition;
   varying vec2 vUv;
   varying vec3 vPos;
 
@@ -177,7 +174,7 @@ Sky.SkyShader = {
     vec4 galaxy = texture2D(
       galaxyTexture,
       vec2(
-        (vPos.x) * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
+        vPos.x * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
         vPos.y * 0.00007 + (galaxyNoiseTex.g - 0.5) * 0.3
       )
     );
@@ -192,7 +189,7 @@ Sky.SkyShader = {
     galaxy = texture2D(
       galaxyTexture,
       vec2(
-        (vPos.x) * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
+        vPos.x * 0.00006 + (galaxyNoiseTex.r - 0.5) * 0.3,
         vPos.y * 0.00007 + (galaxyNoiseTex.g - 0.5) * 0.3
       )
     );
